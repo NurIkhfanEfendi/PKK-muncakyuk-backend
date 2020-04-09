@@ -8,6 +8,12 @@ Route::post('register', 'UserController@store');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('logout', 'UserController@logout');
+
+    Route::get('admin/{limit}/{offset}', "AdminController@getAll"); //read pelanggaran
+	Route::post('admin', 'AdminController@store'); //create pelanggaran
+	Route::put('admin/{id}', "AdminController@update"); //update pelanggaran
+	Route::delete('admin/{id}', "AdminController@delete"); //delete pelanggaran
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
