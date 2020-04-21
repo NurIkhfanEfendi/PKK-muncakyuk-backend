@@ -120,12 +120,12 @@ class TujuanController extends Controller
     {
       try {
       	$validator = Validator::make($request->all(), [
-			"name"              => 'required|string|max:255',
+		      	"name"              => 'required|string|max:255',
             "tujuan"            => 'required|string|max:255',
             "tanggal_berangkat" => 'required|date_format:Y-m-d',
             "tanggal_pulang"    => 'required|date_format:Y-m-d',
             "titik_kumpul"      => 'required|string|max:255',
-            "nomerwa"           => 'required|numeric|max:255',
+            "nomerwa"           => 'required|numeric',
 		]);
 
       	if($validator->fails()){
@@ -136,13 +136,14 @@ class TujuanController extends Controller
       	}
 
       	//proses update data
-    	$data = Tujuan::where('id', $id)->first();
+      	$data = Tujuan::where('id', $id)->first();
         $data->name = $request->input('name');
         $data->tujuan = $request->input('tujuan');
         $data->tanggal_berangkat = $request->input('tanggal_berangkat');
         $data->tanggal_pulang = $request->input('tanggal_pulang');
         $data->titik_kumpul = $request->input('titik_kumpul');
         $data->nomerwa = $request->input('nomerwa');
+        $data->save();
 
       	return response()->json([
       		'status'	=> '1',
