@@ -49,7 +49,7 @@ class AdminController extends Controller
 			'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'tempat_tinggal' => 'required|string|max:255',
-			'email' => 'required|string|email|max:255|unique:User',
+			'email' => 'required|string|email|max:255|unique:Admin',
 			'password' => 'required|string|min:6',
 			'password_verify' => 'required|string|min:6',
 		]);
@@ -70,12 +70,11 @@ class AdminController extends Controller
 		$data->password_verify = Hash::make($request->password_verify);
 		$data->save();
 
-		$token = JWTAuth::fromdUser($data);
+		// $token = JWTAuth::fromdAdmin($data);
 
 		return response()->json([
 			'status'	=> '1',
-			'message'	=> 'User berhasil ditambahkan'
-			//'user'		=> $user,
+			'message'	=> 'Admin berhasil ditambahkan'
 		], 201);
     }
       
@@ -86,7 +85,7 @@ class AdminController extends Controller
 			'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'tempat_tinggal' => 'required|string|max:255',
-			'email' => 'required|string|email|max:255|unique:User',
+			'email' => 'required|string|email|max:255|unique:Admin',
 			'password' => 'required|string|min:6',
 			'password_verify' => 'required|string|min:6',
 		]);

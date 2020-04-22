@@ -16,11 +16,12 @@ class Tujuan extends Migration
         Schema::create('tujuan', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('keterangan');
+            $table->integer('no_hp');
             $table->string('tujuan');
             $table->date('tanggal_berangkat');
             $table->date('tanggal_pulang');
             $table->string('titik_kumpul');
-            $table->numeric('nomerwa');
             $table->timestamps();
         });
     }

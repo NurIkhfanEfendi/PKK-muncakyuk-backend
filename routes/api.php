@@ -18,6 +18,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 	Route::post('tujuan', 'TujuanController@store'); //create pelanggaran
 	Route::put('tujuan/{id}', "TujuanController@update"); //update pelanggaran
 	Route::delete('tujuan/{id}', "TujuanController@delete"); //delete pelanggaran
+	Route::post('tujuan/{limit}/{offset}', "TujuanController@find"); //read pelanggaran
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
